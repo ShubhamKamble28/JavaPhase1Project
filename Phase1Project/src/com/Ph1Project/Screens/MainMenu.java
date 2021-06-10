@@ -20,16 +20,7 @@ public class MainMenu implements Screens
 	List<String> alm = new ArrayList<>();
 	
 	public MainMenu()
-	{
-		String appName = "Virtual Key App";
-		String devName = "Developed by Shubham Kamble";
-		
-		System.out.println(appName);
-		System.out.println();
-
-		System.out.println(devName);
-		System.out.println();
-		
+	{	
 		alm.add("1.Show files");
 		alm.add("2.Show files option Menu");
 		alm.add("3.Quit");
@@ -53,38 +44,34 @@ public class MainMenu implements Screens
 	public void OptionMenu()
 	{
 		
-		System.out.println("Enter the option:");
+		System.out.println("Enter the option which you would to perform:");
 		option =sc.nextInt();
 		
-			switch(option)
+			switch(this.option)
 			{
 			case 1: //show files
-				System.out.println("List of files:");
+				System.out.println("List of files present on the directory:");
 				this.showfile(fm.dir);
 				this.show();
 				this.OptionMenu();
 				break; 
+				
 			case 2: //file menu
-				//FileMenu fm = new FileMenu();
 				fm.show();
 				fm.OptionMenu();
 				break;
-			case 3: //Quit
-				System.out.println("Thanks for using the application");
-				System.exit(0);
 				
+			case 3: //Quit
+				System.out.println("Thanks for using the application !!!");
+				System.exit(0);
+				break;
 			default:
-                System.out.println("Invalid option, please try again");
+                System.out.println("Invalid option, please try again...");
                 break;
 			}
 		this.OptionMenu();
 	}
 
-	@Override
-	public void GetUserInput() 
-	{
-		
-	}
 	
 	public void showfile(String dir)
 	{

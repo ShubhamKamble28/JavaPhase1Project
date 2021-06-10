@@ -1,6 +1,7 @@
 package com.Ph1Project.Screens;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -10,7 +11,8 @@ public class FileMenu implements Screens
 {
 
 	Scanner sc = new Scanner(System.in);
-	int option,con;
+
+	int option;
 	String dir = "D:\\Simplilearn Course Material\\Phase1 Project\\Directory";
 	List<String> al = new ArrayList<String>();
 	
@@ -25,7 +27,8 @@ public class FileMenu implements Screens
 	@Override
 	public void show() 
 	{
-		System.out.println("File Option menu:");
+		System.out.println("File Operations menu:");
+		System.out.println("----------------------");
 		
 		for (String str : al)
 		{
@@ -38,49 +41,45 @@ public class FileMenu implements Screens
 	@Override
 	public void OptionMenu() 
 	{
-		System.out.println("Enter the option:");
+		System.out.println("Enter the option which you would like to perform:");
 		option =sc.nextInt();
 		
-			switch(option)
+			switch(this.option)
 			{
 			case 1: //add files
-				//System.out.println("Name of file to be add:");
 				this.addfile(dir);
-				
+				this.show();
 				break;
+				
 			case 2: //delete file
-				//System.out.println("Name of file to be delete:");
 				this.deletefile(dir);
-				
+				this.show();
 				break;
+				
 			case 3: //search file
-				//System.out.println("Name of file to be search:");
 				this.searchfile(dir);
-				
+				this.show();
 				break;
+				
 			case 4 : //return to main menu
 				MainMenu mm = new MainMenu();
 				mm.show();
 				mm.OptionMenu();
 				break;
+				
 			default:
-                System.out.println("Invalid option, please try again");
+                System.out.println("Invalid option, please try again...");
                 break;
 			}
-		
+		this.OptionMenu();
 	}
-
-	@Override
-	public void GetUserInput() 
-	{	}
-	
 	
 	
 	public void addfile(String dir)
 	{
 	
 		Scanner sc = new Scanner(System.in);
-		System.out.println("file name to be added:");
+		System.out.println("Enter the File name to be added:");
 		String fname = sc.next();
 		boolean result;
 		File f1 = new File(dir,fname);
@@ -88,25 +87,25 @@ public class FileMenu implements Screens
 			result = f1.createNewFile();
 			if(result)
 			{
-				System.out.println("file added to directory ");
+				System.out.println("File is successfully added to directory!!! ");
 			}
 			else
 			{
-				System.out.println("already present");
+				System.out.println("Same named file is already present...");
 			}
 		
-		}catch(Exception e)
+		}catch(IOException e)
 		{
 			e.printStackTrace();
 		}
-		System.out.println("----------------------------------");
+		System.out.println("-----------------------------------------------");
 	}
 	
 	
 	public void deletefile(String dir)
 	{
 		Scanner sc = new Scanner(System.in);
-		System.out.println("file name to be deleted:");
+		System.out.println("Enter the File name to be deleted:");
 		String fname = sc.next();
 		boolean result;
 		File f2 = new File(dir,fname);
@@ -114,25 +113,25 @@ public class FileMenu implements Screens
 			result = f2.delete();
 			if(result)
 			{
-				System.out.println("file deleted from directory ");
+				System.out.println("File is successfully deleted from directory!!! ");
 			}
 			else
 			{
-				System.out.println("file not in directory");
+				System.out.println("Entered File is not present in directory to delete...");
 			}
 		
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		System.out.println("----------------------------------");
+		System.out.println("--------------------------------------------------------");
 	}
 	
 	public void searchfile(String dir)
 	{
 	
 		Scanner sc = new Scanner(System.in);
-		System.out.println("file name to be search:");
+		System.out.println("Enter File name to be search:");
 		String fname = sc.next();
 		boolean result;
 		File f1 = new File(dir,fname);
@@ -140,18 +139,18 @@ public class FileMenu implements Screens
 			result = f1.exists();
 			if(result)
 			{
-				System.out.println("file found in directory " +fname);
+				System.out.println("Entered file name " +fname+ " found in directory!!! ");
 			}
 			else
 			{
-				System.out.println("file not found");
+				System.out.println("Entered File is not found in directory...");
 			}
 		
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		System.out.println("----------------------------------");
+		System.out.println("---------------------------------------------------");
 	}
 	
 }
